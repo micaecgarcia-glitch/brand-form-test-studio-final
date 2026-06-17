@@ -10,98 +10,236 @@
     --bg: #faf7f2;
     --light: #f5f1eb;
     --border: #e8e3db;
-    --text: #3e3530;
+    --text-primary: #3e3530;
     --text-secondary: #6b6560;
     --accent: #8b7355;
     --accent-dark: #6b5b4e;
     --accent-light: #d4a574;
+    --success: #5a7a5a;
+    --radius: 10px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'Roboto', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; }
-
-  /* Progress bar */
-  #progress-bar-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: var(--border); z-index: 999; }
-  #progress-bar { height: 4px; width: 0%; background: var(--accent); transition: width 0.3s; }
-
-  header { background: var(--accent-dark); color: #fff; padding: 36px 24px 28px; text-align: center; margin-top: 4px; }
-  header h1 { font-size: 1.7rem; font-weight: 700; letter-spacing: 0.5px; }
-  header p { font-size: 0.92rem; margin-top: 6px; opacity: 0.82; font-weight: 400; }
-
-  .container { max-width: 760px; margin: 0 auto; padding: 28px 20px 60px; }
-
-  /* Language selector */
-  .lang-wrap { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 16px 20px; margin-bottom: 24px; }
-  .lang-wrap label { font-weight: 500; font-size: 0.9rem; color: var(--text-secondary); display: block; margin-bottom: 8px; }
-  .lang-wrap select { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 7px; background: #fff; color: var(--text); font-family: 'Roboto', sans-serif; font-size: 0.95rem; }
-
-  /* Intro */
-  .intro { background: var(--light); border-left: 4px solid var(--accent-light); border-radius: 0 10px 10px 0; padding: 20px 22px; margin-bottom: 28px; line-height: 1.7; color: var(--text); font-size: 0.97rem; }
-
-  /* Respondent info */
-  .respondent-section { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
-  .respondent-section h2 { font-size: 1rem; font-weight: 500; color: var(--accent-dark); margin-bottom: 16px; }
-  .field-group { margin-bottom: 14px; }
-  .field-group label { display: block; font-size: 0.88rem; font-weight: 500; color: var(--text-secondary); margin-bottom: 5px; }
-  .field-group input, .field-group select { width: 100%; padding: 9px 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; font-size: 0.95rem; }
-  .field-group input:focus, .field-group select:focus { outline: none; border-color: var(--accent); }
-
-  /* Accordion */
-  .accordion { margin-bottom: 12px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
-  .accordion-header { background: var(--light); padding: 16px 20px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
-  .accordion-header:hover { background: #ede9e1; }
-  .accordion-header h2 { font-size: 0.97rem; font-weight: 500; color: var(--accent-dark); }
-  .accordion-icon { font-size: 1.1rem; color: var(--accent); transition: transform 0.25s; }
-  .accordion.open .accordion-icon { transform: rotate(180deg); }
-  .accordion-body { display: none; padding: 20px; background: #fff; }
-  .accordion.open .accordion-body { display: block; }
-
-  /* Question */
-  .question { margin-bottom: 24px; }
-  .question label { display: block; font-size: 0.93rem; font-weight: 500; color: var(--text); margin-bottom: 8px; line-height: 1.5; }
-  .question label span.q-num { color: var(--accent); margin-right: 6px; }
-  .question textarea { width: 100%; min-height: 80px; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); font-family: 'Roboto', sans-serif; font-size: 0.93rem; resize: vertical; transition: border 0.2s; }
-  .question textarea:focus { outline: none; border-color: var(--accent); }
-  .audio-row { display: flex; gap: 8px; align-items: center; margin-top: 7px; flex-wrap: wrap; }
-  .btn-record { background: var(--accent); color: #fff; border: none; border-radius: 7px; padding: 7px 14px; font-family: 'Roboto', sans-serif; font-size: 0.85rem; cursor: pointer; transition: background 0.2s; }
-  .btn-record:hover { background: var(--accent-dark); }
-  .btn-stop { background: #b05050; color: #fff; border: none; border-radius: 7px; padding: 7px 14px; font-family: 'Roboto', sans-serif; font-size: 0.85rem; cursor: pointer; display: none; }
-  .btn-stop:hover { background: #8b3a3a; }
-  .rec-status { font-size: 0.8rem; color: var(--text-secondary); }
-  .custom-badge { display: inline-block; background: var(--accent-light); color: var(--accent-dark); font-size: 0.72rem; font-weight: 500; border-radius: 20px; padding: 2px 9px; margin-left: 8px; vertical-align: middle; }
-
-  /* Submit area */
-  .submit-area { margin-top: 32px; text-align: center; }
-  .btn-submit { background: var(--accent-dark); color: #fff; border: none; border-radius: 10px; padding: 14px 40px; font-family: 'Roboto', sans-serif; font-size: 1rem; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-  .btn-submit:hover { background: var(--accent); }
-  .btn-reset { background: none; color: var(--text-secondary); border: 1px solid var(--border); border-radius: 10px; padding: 13px 28px; font-family: 'Roboto', sans-serif; font-size: 0.92rem; cursor: pointer; margin-top: 12px; transition: border-color 0.2s; }
-  .btn-reset:hover { border-color: var(--accent); color: var(--accent-dark); }
-
-  /* Success */
-  #success-page { display: none; max-width: 600px; margin: 60px auto; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 48px 36px; text-align: center; }
-  #success-page h2 { font-size: 1.5rem; color: var(--accent-dark); margin-bottom: 12px; }
-  #success-page p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 8px; }
-  #success-page .contact-info { margin-top: 20px; font-size: 0.9rem; }
-
-  @media (max-width: 520px) {
-    header h1 { font-size: 1.3rem; }
-    .container { padding: 20px 12px 48px; }
+  body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    background: var(--bg);
+    color: var(--text-primary);
+    min-height: 100vh;
   }
+
+  /* PROGRESS BAR */
+  #progress-bar-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 5px;
+    background: var(--border); z-index: 1000;
+  }
+  #progress-bar {
+    height: 100%; width: 0%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transition: width 0.4s ease;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, var(--accent-dark), var(--accent));
+    color: white; padding: 48px 24px 36px;
+    text-align: center;
+  }
+  header h1 { font-weight: 700; font-size: 2rem; margin-bottom: 8px; }
+  header p { font-size: 1rem; opacity: 0.85; }
+
+  /* MAIN */
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 80px; }
+
+  /* LANGUAGE SELECTOR */
+  .lang-selector-box {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 20px 24px; margin-bottom: 28px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .lang-selector-box label { font-weight: 500; color: var(--text-primary); }
+  .lang-selector-box select {
+    padding: 8px 14px; border: 1px solid var(--border);
+    border-radius: 6px; font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem; background: var(--bg); color: var(--text-primary);
+    cursor: pointer;
+  }
+
+  /* INTRO */
+  .intro-box {
+    background: white; border: 1px solid var(--border);
+    border-left: 4px solid var(--accent-light);
+    border-radius: var(--radius); padding: 24px 28px; margin-bottom: 28px;
+    line-height: 1.75; color: var(--text-secondary);
+  }
+  .intro-box strong { color: var(--text-primary); }
+
+  /* RESPONDENT */
+  .respondent-box {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 24px 28px; margin-bottom: 28px;
+  }
+  .respondent-box h2 {
+    font-weight: 500; font-size: 1.05rem;
+    color: var(--accent-dark); margin-bottom: 20px;
+  }
+  .fields-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  @media (max-width: 600px) { .fields-row { grid-template-columns: 1fr; } }
+  .field-group { display: flex; flex-direction: column; gap: 6px; }
+  .field-group label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); }
+  .field-group input, .field-group select {
+    padding: 10px 14px; border: 1px solid var(--border);
+    border-radius: 7px; font-family: 'Roboto', sans-serif;
+    font-size: 0.95rem; background: var(--bg); color: var(--text-primary);
+    transition: border-color 0.2s;
+  }
+  .field-group input:focus, .field-group select:focus {
+    outline: none; border-color: var(--accent);
+  }
+
+  /* ACCORDION */
+  .section-accordion {
+    background: white; border: 1px solid var(--border);
+    border-radius: var(--radius); margin-bottom: 16px; overflow: hidden;
+  }
+  .accordion-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 24px; cursor: pointer; user-select: none;
+    transition: background 0.2s;
+  }
+  .accordion-header:hover { background: var(--light); }
+  .accordion-title {
+    font-weight: 500; font-size: 1rem; color: var(--text-primary);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .accordion-title .emoji { font-size: 1.2rem; }
+  .accordion-arrow {
+    font-size: 1rem; color: var(--accent);
+    transition: transform 0.3s; display: inline-block;
+  }
+  .accordion-body { display: none; padding: 0 24px 24px; }
+  .accordion-body.open { display: block; }
+  .section-accordion.open .accordion-arrow { transform: rotate(180deg); }
+
+  /* QUESTIONS */
+  .question-block { margin-bottom: 28px; }
+  .question-block:last-child { margin-bottom: 0; }
+  .question-label {
+    font-size: 0.95rem; font-weight: 500; color: var(--text-primary);
+    margin-bottom: 10px; line-height: 1.5; display: block;
+  }
+  .question-label .q-num {
+    font-size: 0.75rem; background: var(--accent-light);
+    color: white; border-radius: 100px; padding: 2px 8px;
+    margin-right: 8px; font-weight: 700;
+  }
+  .custom-badge {
+    font-size: 0.7rem; background: var(--accent); color: white;
+    border-radius: 100px; padding: 2px 8px; margin-left: 8px;
+    font-weight: 500;
+  }
+  .important-badge {
+    font-size: 0.7rem; background: #c0392b; color: white;
+    border-radius: 100px; padding: 2px 8px; margin-left: 8px;
+    font-weight: 500;
+  }
+  textarea {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--border);
+    border-radius: 7px; font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem; color: var(--text-primary); background: var(--bg);
+    resize: vertical; min-height: 90px; transition: border-color 0.2s;
+    line-height: 1.6;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+  .audio-controls {
+    display: flex; gap: 8px; margin-top: 8px; align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-record, .btn-stop {
+    padding: 7px 16px; border: none; border-radius: 6px;
+    font-family: 'Roboto', sans-serif; font-size: 0.82rem;
+    font-weight: 500; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-record {
+    background: var(--accent); color: white;
+  }
+  .btn-record:hover { background: var(--accent-dark); }
+  .btn-stop {
+    background: var(--border); color: var(--text-secondary); display: none;
+  }
+  .btn-stop:hover { background: #d4cbc0; }
+  .recording-status {
+    font-size: 0.78rem; color: var(--text-secondary);
+    display: flex; align-items: center; gap: 5px;
+  }
+  .dot-rec {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #c0392b; display: none;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+  /* BUTTONS */
+  .form-actions {
+    display: flex; gap: 12px; margin-top: 36px; justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-submit, .btn-reset {
+    padding: 14px 36px; border: none; border-radius: 8px;
+    font-family: 'Roboto', sans-serif; font-size: 1rem;
+    font-weight: 500; cursor: pointer; transition: all 0.2s;
+  }
+  .btn-submit {
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: white; box-shadow: 0 4px 14px rgba(139,115,85,0.3);
+  }
+  .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(139,115,85,0.4); }
+  .btn-reset {
+    background: var(--light); color: var(--text-secondary); border: 1px solid var(--border);
+  }
+  .btn-reset:hover { background: var(--border); }
+
+  /* SUCCESS PAGE */
+  #success-page {
+    display: none; max-width: 600px; margin: 80px auto;
+    text-align: center; padding: 20px;
+  }
+  .success-icon { font-size: 4rem; margin-bottom: 20px; }
+  #success-page h2 { font-size: 1.6rem; font-weight: 700; color: var(--accent-dark); margin-bottom: 12px; }
+  #success-page p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 8px; }
+  .success-contact { margin-top: 24px; background: var(--light); border-radius: var(--radius); padding: 20px 28px; display: inline-block; text-align: left; }
+  .success-contact p { font-size: 0.9rem; }
+
+  /* VALIDATION */
+  .field-error { border-color: #c0392b !important; }
+  .error-msg { font-size: 0.78rem; color: #c0392b; margin-top: 4px; }
+
+  /* SPINNER */
+  .spinner {
+    display: inline-block; width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.4); border-top-color: white;
+    border-radius: 50%; animation: spin 0.7s linear infinite;
+    vertical-align: middle; margin-right: 8px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
 </style>
 </head>
 <body>
 
-<div id="progress-bar-wrap"><div id="progress-bar"></div></div>
+<div id="progress-bar-container"><div id="progress-bar"></div></div>
 
 <header>
   <h1>🎨 Test Studio Final</h1>
-  <p>Sector: Servicios de Diseño — Branding, Web y Dirección de Arte</p>
+  <p>Sector: Servicios — Diseño, Branding &amp; Dirección de Arte</p>
 </header>
 
-<div class="container" id="main-form">
+<div id="form-wrapper">
+<main>
 
-  <!-- Language selector -->
-  <div class="lang-wrap">
-    <label>🌐 Idioma para grabación de voz:</label>
+  <!-- LANGUAGE SELECTOR -->
+  <div class="lang-selector-box">
+    <label for="lang-select">🌐 Idioma para grabar respuestas:</label>
     <select id="lang-select">
       <option value="es-AR" selected>🇦🇷 Español (Argentina)</option>
       <option value="es-ES">🇪🇸 Español (España)</option>
@@ -114,697 +252,548 @@
     </select>
   </div>
 
-  <!-- Intro -->
-  <div class="intro">
-    ¡Hola, equipo de Test Studio Final! Este formulario nos ayudará a capturar la esencia de su marca y crear una identidad que cuente de corazón lo que ofrecen y refleje el diferencial de cómo combinan creatividad y estrategia en Test Studio Final. Pueden responder escribiendo o grabando su voz. Tómense el tiempo que necesiten. 🧘‍♀️ Estoy a disposición para acompañarlos en el proceso del formulario o por cualquier consulta que surja. ¡Gracias por compartir!
+  <!-- INTRO -->
+  <div class="intro-box">
+    <p>¡Hola, equipo de <strong>Test Studio Final</strong>! Este formulario nos ayudará a capturar la esencia de tu marca y crear una identidad que consiga contar de corazón lo que ofrecen — esa mezcla única de <strong>creatividad + estrategia</strong> que los diferencia. Queremos entender cómo piensan, qué los mueve y cómo construyen con sus clientes. Pueden responder escribiendo o grabando su voz. Tómense el tiempo que necesiten. 🧘‍♀️ Estoy a disposición para acompañarlos en el proceso del formulario o por cualquier consulta que surja. ¡Gracias por compartir!</p>
   </div>
 
-  <!-- Respondent info -->
-  <div class="respondent-section">
+  <!-- RESPONDENT -->
+  <div class="respondent-box">
     <h2>👤 Información del respondente</h2>
-    <div class="field-group">
-      <label>Nombre completo *</label>
-      <input type="text" id="resp-name" placeholder="Tu nombre" required>
-    </div>
-    <div class="field-group">
-      <label>Email *</label>
-      <input type="email" id="resp-email" placeholder="tu@email.com" required>
-    </div>
-    <div class="field-group">
-      <label>Rol en Test Studio Final</label>
-      <select id="resp-role">
-        <option value="">Seleccionar rol</option>
-        <option>Fundador/Dueño</option>
-        <option>Co-fundador</option>
-        <option>Director de Arte</option>
-        <option>Community Manager</option>
-        <option>Marketing</option>
-        <option>Operaciones</option>
-        <option>Otro</option>
-      </select>
+    <div class="fields-row">
+      <div class="field-group">
+        <label for="resp-name">Nombre completo *</label>
+        <input type="text" id="resp-name" placeholder="Tu nombre">
+      </div>
+      <div class="field-group">
+        <label for="resp-email">Email *</label>
+        <input type="email" id="resp-email" placeholder="tu@email.com">
+      </div>
+      <div class="field-group" style="grid-column: 1 / -1;">
+        <label for="resp-role">Rol en Test Studio Final</label>
+        <select id="resp-role">
+          <option value="">Seleccionar rol...</option>
+          <option>Fundador/Dueño</option>
+          <option>Co-fundador</option>
+          <option>Director de Arte</option>
+          <option>Diseñador/a</option>
+          <option>Community Manager</option>
+          <option>Marketing</option>
+          <option>Otro</option>
+        </select>
+      </div>
     </div>
   </div>
 
-  <!-- Section 1: Misión -->
-  <div class="accordion open" id="sec-1">
-    <div class="accordion-header" onclick="toggleAccordion('sec-1')">
-      <h2>🎯 Misión</h2>
-      <span class="accordion-icon">▾</span>
+  <form id="brand-form" novalidate>
+
+  <!-- SECTION 1: MISIÓN -->
+  <div class="section-accordion open" id="sec-1">
+    <div class="accordion-header" onclick="toggleSection('sec-1')">
+      <span class="accordion-title"><span class="emoji">🎯</span> Misión</span>
+      <span class="accordion-arrow">▼</span>
+    </div>
+    <div class="accordion-body open">
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">1</span>¿Cuál es el propósito fundamental de Test Studio Final?</label>
+        <textarea name="q1" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q1')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">2</span>¿Qué problemas o necesidades resuelven para sus clientes?</label>
+        <textarea name="q2" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q2')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: PÚBLICO -->
+  <div class="section-accordion" id="sec-2">
+    <div class="accordion-header" onclick="toggleSection('sec-2')">
+      <span class="accordion-title"><span class="emoji">🫂</span> Público Objetivo</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">1.</span> ¿Cuál es el propósito fundamental de Test Studio Final?</label>
-        <textarea id="q1" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q1',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q1',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q1"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">3</span>¿Quién es tu cliente ideal? Describe edad, profesión, origen geográfico</label>
+        <textarea name="q3" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q3')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">2.</span> ¿Qué problemas o necesidades resuelven para sus clientes?</label>
-        <textarea id="q2" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q2',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q2',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q2"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">4</span>¿Cuál es el estilo de vida o valores compartidos de tu cliente ideal?</label>
+        <textarea name="q4" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q4')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">5</span>¿Tienes ejemplos específicos de clientes que mejor representan tu audiencia ideal?</label>
+        <textarea name="q5" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q5')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">6</span>¿Por qué algunos prospects NO se convierten en clientes?</label>
+        <textarea name="q6" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q6')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">7</span>¿En qué contexto o situación de vida están cuando te descubren?</label>
+        <textarea name="q7" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q7')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 2: Público Objetivo -->
-  <div class="accordion" id="sec-2">
-    <div class="accordion-header" onclick="toggleAccordion('sec-2')">
-      <h2>🫂 Público Objetivo</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 3: PROPUESTA DE VALOR -->
+  <div class="section-accordion" id="sec-3">
+    <div class="accordion-header" onclick="toggleSection('sec-3')">
+      <span class="accordion-title"><span class="emoji">🤩</span> Propuesta de Valor</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">3.</span> ¿Quién es tu cliente ideal? Describe edad, profesión, origen geográfico.</label>
-        <textarea id="q3" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q3',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q3',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q3"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">8</span>¿Cuál es tu propuesta única de valor? ¿Por qué elegir Test Studio Final?</label>
+        <textarea name="q8" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q8')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">4.</span> ¿Cuál es el estilo de vida o valores compartidos de tu cliente ideal?</label>
-        <textarea id="q4" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q4',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q4',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q4"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">9</span>¿Qué beneficios NO pueden encontrar en la competencia?</label>
+        <textarea name="q9" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q9')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">5.</span> ¿Tienes ejemplos específicos de clientes que mejor representan tu audiencia ideal?</label>
-        <textarea id="q5" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q5',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q5',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q5"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">10</span>¿Qué experimentan tus clientes que más los asombra o emociona?</label>
+        <textarea name="q10" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q10')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">6.</span> ¿Por qué algunos prospects NO se convierten en clientes?</label>
-        <textarea id="q6" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q6',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q6',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q6"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">11</span>¿Qué objeciones aparecen antes de que el cliente diga "sí"?</label>
+        <textarea name="q11" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q11')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">7.</span> ¿En qué contexto o situación de vida están cuando te descubren?</label>
-        <textarea id="q7" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q7',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q7',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q7"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">12</span>🔴 IMPORTANTE: Menciona MÍNIMO 3 referencias de marcas/estudios similares que ustedes admiran <span class="important-badge">Requerido</span></label>
+        <textarea name="q12" placeholder="Analiza cómo comunican, qué hacen bien, qué podrían hacer diferente..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q12')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">13</span>¿Cómo equilibran la parte creativa con la parte estratégica en cada proyecto? ¿Hay un proceso definido? <span class="custom-badge">Personalizada</span></label>
+        <textarea name="q13" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q13')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 3: Propuesta de Valor -->
-  <div class="accordion" id="sec-3">
-    <div class="accordion-header" onclick="toggleAccordion('sec-3')">
-      <h2>🤩 Propuesta de Valor</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 4: PERSONALIDAD -->
+  <div class="section-accordion" id="sec-4">
+    <div class="accordion-header" onclick="toggleSection('sec-4')">
+      <span class="accordion-title"><span class="emoji">🌟</span> Personalidad de Marca</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">8.</span> ¿Cuál es tu propuesta única de valor? ¿Por qué elegir Test Studio Final?</label>
-        <textarea id="q8" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q8',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q8',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q8"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">14</span>¿Cómo describirías el tono y voz de Test Studio Final?</label>
+        <textarea name="q14" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q14')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">9.</span> ¿Qué beneficios NO pueden encontrar en la competencia?</label>
-        <textarea id="q9" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q9',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q9',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q9"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">10.</span> ¿Qué experimentan tus clientes que más los asombra o emociona?</label>
-        <textarea id="q10" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q10',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q10',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q10"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">11.</span> ¿Qué objeciones aparecen antes de que el cliente diga "sí"?</label>
-        <textarea id="q11" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q11',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q11',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q11"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">12.</span> 🔴 IMPORTANTE: Menciona MÍNIMO 3 referencias de marcas/estudios similares que admiran (analizá cómo comunican, qué hacen bien, qué podrían hacer diferente).</label>
-        <textarea id="q12" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q12',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q12',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q12"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">13.</span> ¿Qué diferencia a Test Studio Final de otros estudios de diseño que también combinan creatividad con estrategia? <span class="custom-badge">Personalizada</span></label>
-        <textarea id="q13" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q13',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q13',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q13"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">15</span>¿Qué emociones querés que sienta el cliente con tu marca?</label>
+        <textarea name="q15" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q15')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 4: Personalidad de Marca -->
-  <div class="accordion" id="sec-4">
-    <div class="accordion-header" onclick="toggleAccordion('sec-4')">
-      <h2>🌟 Personalidad de Marca</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 5: VALORES -->
+  <div class="section-accordion" id="sec-5">
+    <div class="accordion-header" onclick="toggleSection('sec-5')">
+      <span class="accordion-title"><span class="emoji">⭐</span> Valores de Marca</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">14.</span> ¿Cómo describirías el tono y voz de Test Studio Final?</label>
-        <textarea id="q14" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q14',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q14',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q14"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">16</span>¿Cuáles son los 3-5 valores principales de Test Studio Final?</label>
+        <textarea name="q16" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q16')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">15.</span> ¿Qué emociones querés que sienta el cliente con tu marca?</label>
-        <textarea id="q15" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q15',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q15',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q15"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">17</span>¿Cómo viven estos valores en la interacción con los clientes?</label>
+        <textarea name="q17" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q17')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 5: Valores de Marca -->
-  <div class="accordion" id="sec-5">
-    <div class="accordion-header" onclick="toggleAccordion('sec-5')">
-      <h2>⭐ Valores de Marca</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 6: HISTORIA -->
+  <div class="section-accordion" id="sec-6">
+    <div class="accordion-header" onclick="toggleSection('sec-6')">
+      <span class="accordion-title"><span class="emoji">📜</span> Historia de la Marca</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">16.</span> ¿Cuáles son los 3-5 valores principales de Test Studio Final?</label>
-        <textarea id="q16" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q16',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q16',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q16"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">18</span>¿Cómo nació Test Studio Final? Contá la historia desde el inicio</label>
+        <textarea name="q18" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q18')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">17.</span> ¿Cómo viven estos valores en la interacción con los clientes?</label>
-        <textarea id="q17" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q17',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q17',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q17"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">19</span>¿Cuál ha sido la evolución de Test Studio Final hasta hoy?</label>
+        <textarea name="q19" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q19')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 6: Historia -->
-  <div class="accordion" id="sec-6">
-    <div class="accordion-header" onclick="toggleAccordion('sec-6')">
-      <h2>📜 Historia de la Marca</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 7: IDENTIDAD VISUAL -->
+  <div class="section-accordion" id="sec-7">
+    <div class="accordion-header" onclick="toggleSection('sec-7')">
+      <span class="accordion-title"><span class="emoji">😎</span> Identidad Visual</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">18.</span> ¿Cómo nació Test Studio Final? Contá la historia desde el inicio.</label>
-        <textarea id="q18" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q18',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q18',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q18"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">19.</span> ¿Cuál ha sido la evolución de Test Studio Final hasta hoy?</label>
-        <textarea id="q19" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q19',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q19',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q19"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">20</span>¿Qué colores, tipografía y elementos visuales representan a Test Studio Final?</label>
+        <textarea name="q20" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q20')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 7: Identidad Visual -->
-  <div class="accordion" id="sec-7">
-    <div class="accordion-header" onclick="toggleAccordion('sec-7')">
-      <h2>😎 Identidad Visual</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 8: COMUNICACIÓN -->
+  <div class="section-accordion" id="sec-8">
+    <div class="accordion-header" onclick="toggleSection('sec-8')">
+      <span class="accordion-title"><span class="emoji">🗣️</span> Comunicación</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">20.</span> ¿Qué colores, tipografía y elementos visuales representan a Test Studio Final?</label>
-        <textarea id="q20" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q20',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q20',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q20"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">21</span>¿Cuáles son los canales de comunicación más efectivos con tus clientes?</label>
+        <textarea name="q21" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q21')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">22</span>¿Qué mensajes generan más inquietud e interés en nuevos clientes?</label>
+        <textarea name="q22" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q22')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">23</span>¿Qué información sobre Test Studio Final NO está clara para los prospects?</label>
+        <textarea name="q23" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q23')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">24</span>¿Qué explicas en conversaciones privadas que debería estar públicamente?</label>
+        <textarea name="q24" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q24')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">25</span>¿Cómo comunican la diferencia entre sus tres servicios (branding, web, dirección de arte) a un cliente que no sabe cuál necesita? <span class="custom-badge">Personalizada</span></label>
+        <textarea name="q25" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q25')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 8: Comunicación -->
-  <div class="accordion" id="sec-8">
-    <div class="accordion-header" onclick="toggleAccordion('sec-8')">
-      <h2>🗣️ Comunicación</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 9: CANALES Y VENTAS -->
+  <div class="section-accordion" id="sec-9">
+    <div class="accordion-header" onclick="toggleSection('sec-9')">
+      <span class="accordion-title"><span class="emoji">📲</span> Canales y Ventas</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">21.</span> ¿Cuáles son los canales de comunicación más efectivos con tus clientes?</label>
-        <textarea id="q21" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q21',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q21',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q21"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">26</span>¿De dónde vienen hoy la mayoría de tus inquiries y clientes?</label>
+        <textarea name="q26" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q26')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">22.</span> ¿Qué mensajes generan más inquietud e interés en nuevos clientes?</label>
-        <textarea id="q22" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q22',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q22',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q22"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">27</span>¿Cuál es el canal que convierte mejor? ¿Dónde se cierran más ventas?</label>
+        <textarea name="q27" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q27')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">23.</span> ¿Qué información sobre Test Studio Final NO está clara para los prospects?</label>
-        <textarea id="q23" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q23',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q23',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q23"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">24.</span> ¿Qué explicás en conversaciones privadas que debería estar públicamente?</label>
-        <textarea id="q24" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q24',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q24',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q24"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">28</span>¿Cómo manejas el proceso desde que alguien te pregunta hasta que confirma el proyecto?</label>
+        <textarea name="q28" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q28')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 9: Canales y Ventas -->
-  <div class="accordion" id="sec-9">
-    <div class="accordion-header" onclick="toggleAccordion('sec-9')">
-      <h2>📲 Canales y Ventas</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 10: CONTENIDO -->
+  <div class="section-accordion" id="sec-10">
+    <div class="accordion-header" onclick="toggleSection('sec-10')">
+      <span class="accordion-title"><span class="emoji">📸</span> Contenido</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">25.</span> ¿De dónde vienen hoy la mayoría de tus inquiries y clientes?</label>
-        <textarea id="q25" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q25',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q25',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q25"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">29</span>¿Qué tipo de contenido es más fácil de producir para ustedes?</label>
+        <textarea name="q29" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q29')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">26.</span> ¿Cuál es el canal que convierte mejor? ¿Dónde se cierran más ventas?</label>
-        <textarea id="q26" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q26',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q26',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q26"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">30</span>¿Tienen material de proyectos pasados? ¿Está organizado?</label>
+        <textarea name="q30" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q30')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">27.</span> ¿Cómo manejás el proceso desde que alguien te pregunta hasta que confirma el proyecto?</label>
-        <textarea id="q27" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q27',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q27',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q27"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">31</span>¿Qué parte del proceso de diseño sería interesante mostrar en redes?</label>
+        <textarea name="q31" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q31')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 10: Contenido -->
-  <div class="accordion" id="sec-10">
-    <div class="accordion-header" onclick="toggleAccordion('sec-10')">
-      <h2>📸 Contenido</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 11: INTERACCIÓN CON CLIENTES -->
+  <div class="section-accordion" id="sec-11">
+    <div class="accordion-header" onclick="toggleSection('sec-11')">
+      <span class="accordion-title"><span class="emoji">💏</span> Interacción con Clientes</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">28.</span> ¿Qué tipo de contenido es más fácil de producir para ustedes?</label>
-        <textarea id="q28" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q28',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q28',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q28"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">32</span>¿Qué experiencia querés que viva el cliente desde el primer contacto?</label>
+        <textarea name="q32" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q32')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">29.</span> ¿Tienen material de proyectos pasados? ¿Está organizado para mostrarlo?</label>
-        <textarea id="q29" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q29',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q29',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q29"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">33</span>¿Cómo se resuelven las preocupaciones o dudas durante el proyecto?</label>
+        <textarea name="q33" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q33')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">30.</span> ¿Qué parte del proceso de diseño sería interesante mostrar o documentar en redes?</label>
-        <textarea id="q30" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q30',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q30',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q30"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">34</span>¿Cuál es el proceso completo desde que alguien consulta hasta que se entrega el proyecto?</label>
+        <textarea name="q34" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q34')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">35</span>¿Cuánto tiempo típicamente pasa entre el primer contacto y confirmar el proyecto?</label>
+        <textarea name="q35" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q35')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">36</span>¿En qué punto del proceso suelen "caerse" los clientes que no avanzan?</label>
+        <textarea name="q36" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q36')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
+      </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">37</span>¿Qué hace que una startup tech o pyme sea el cliente ideal para Test Studio Final? ¿Qué señales les indican que es un buen fit? <span class="custom-badge">Personalizada</span></label>
+        <textarea name="q37" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q37')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 11: Interacción con Clientes -->
-  <div class="accordion" id="sec-11">
-    <div class="accordion-header" onclick="toggleAccordion('sec-11')">
-      <h2>💏 Interacción con Clientes</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 12: PRODUCTOS Y DECISIÓN -->
+  <div class="section-accordion" id="sec-12">
+    <div class="accordion-header" onclick="toggleSection('sec-12')">
+      <span class="accordion-title"><span class="emoji">💰</span> Servicios y Decisión de Compra</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">31.</span> ¿Qué experiencia querés que viva el cliente desde el primer contacto?</label>
-        <textarea id="q31" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q31',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q31',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q31"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">38</span>¿Cuáles son tus 3 principales servicios/paquetes?</label>
+        <textarea name="q38" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q38')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">32.</span> ¿Cómo se resuelven las preocupaciones o dudas antes de arrancar el proyecto?</label>
-        <textarea id="q32" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q32',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q32',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q32"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">39</span>¿Cuál es el más popular o genera más demanda?</label>
+        <textarea name="q39" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q39')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">33.</span> ¿Cuál es el proceso completo desde que alguien consulta hasta que el proyecto es entregado?</label>
-        <textarea id="q33" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q33',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q33',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q33"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">40</span>¿Tienes diferentes opciones de precio? ¿Cómo se presentan?</label>
+        <textarea name="q40" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q40')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">34.</span> ¿Cómo es el proceso de colaboración durante el proyecto? ¿Cómo se toman las decisiones creativas? <span class="custom-badge">Personalizada</span></label>
-        <textarea id="q34" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q34',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q34',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q34"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">41</span>¿Cuál es el factor más importante para que alguien diga "sí"?</label>
+        <textarea name="q41" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q41')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">35.</span> ¿En qué punto del proceso suelen "caerse" los clientes que se van?</label>
-        <textarea id="q35" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q35',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q35',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q35"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">42</span>¿Qué define el éxito de un proyecto para ustedes más allá de la entrega final? <span class="custom-badge">Personalizada</span></label>
+        <textarea name="q42" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q42')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 12: Productos y Decisión de Compra -->
-  <div class="accordion" id="sec-12">
-    <div class="accordion-header" onclick="toggleAccordion('sec-12')">
-      <h2>💰 Servicios y Decisión de Compra</h2>
-      <span class="accordion-icon">▾</span>
+  <!-- SECTION 13: VISIÓN -->
+  <div class="section-accordion" id="sec-13">
+    <div class="accordion-header" onclick="toggleSection('sec-13')">
+      <span class="accordion-title"><span class="emoji">🔜</span> Visión a Largo Plazo</span>
+      <span class="accordion-arrow">▼</span>
     </div>
     <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">36.</span> ¿Cuáles son tus 3 principales servicios o paquetes?</label>
-        <textarea id="q36" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q36',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q36',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q36"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">43</span>¿Dónde ves a Test Studio Final en 2-3 años?</label>
+        <textarea name="q43" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q43')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
-      <div class="question">
-        <label><span class="q-num">37.</span> ¿Cuál es el servicio más demandado o el que más te gusta entregar?</label>
-        <textarea id="q37" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q37',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q37',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q37"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">38.</span> ¿Tenés diferentes opciones de precio? ¿Cómo se presentan al cliente?</label>
-        <textarea id="q38" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q38',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q38',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q38"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">39.</span> ¿Cómo medís el éxito de un proyecto una vez entregado? ¿Qué métricas o resultados concretos comparten con el cliente? <span class="custom-badge">Personalizada</span></label>
-        <textarea id="q39" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q39',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q39',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q39"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">40.</span> ¿Cuál es el factor más importante para que alguien diga "sí"?</label>
-        <textarea id="q40" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q40',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q40',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q40"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">41.</span> ¿Qué tipo de startups o pymes aprovechan mejor el trabajo de Test Studio Final? ¿Hay un perfil de cliente con el que los resultados siempre son mejores? <span class="custom-badge">Personalizada</span></label>
-        <textarea id="q41" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q41',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q41',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q41"></span>
-        </div>
+      <div class="question-block">
+        <label class="question-label"><span class="q-num">44</span>¿Cuál sería el proyecto o cliente ideal que te gustaría conseguir?</label>
+        <textarea name="q44" placeholder="Escribe tu respuesta aquí..."></textarea>
+        <div class="audio-controls"><button type="button" class="btn-record" onclick="startRec(this,'q44')">Grabar</button><button type="button" class="btn-stop" onclick="stopRec(this)">⏹ Detener</button><span class="recording-status"><span class="dot-rec"></span><span class="rec-label"></span></span></div>
       </div>
     </div>
   </div>
 
-  <!-- Section 13: Visión a Largo Plazo -->
-  <div class="accordion" id="sec-13">
-    <div class="accordion-header" onclick="toggleAccordion('sec-13')">
-      <h2>🔜 Visión a Largo Plazo</h2>
-      <span class="accordion-icon">▾</span>
-    </div>
-    <div class="accordion-body">
-      <div class="question">
-        <label><span class="q-num">42.</span> ¿Dónde ves a Test Studio Final en 2-3 años?</label>
-        <textarea id="q42" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q42',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q42',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q42"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">43.</span> ¿Cuál sería el proyecto o cliente ideal que te gustaría cerrar?</label>
-        <textarea id="q43" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q43',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q43',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q43"></span>
-        </div>
-      </div>
-      <div class="question">
-        <label><span class="q-num">44.</span> ¿Cómo imaginas la evolución del diferencial creatividad + estrategia a medida que Test Studio Final crece? <span class="custom-badge">Personalizada</span></label>
-        <textarea id="q44" placeholder="Escribe tu respuesta aquí..."></textarea>
-        <div class="audio-row">
-          <button class="btn-record" onclick="startRec('q44',this)">🎙 Grabar</button>
-          <button class="btn-stop" onclick="stopRec('q44',this)">⏹ Detener</button>
-          <span class="rec-status" id="status-q44"></span>
-        </div>
-      </div>
-    </div>
+  <!-- FORM ACTIONS -->
+  <div class="form-actions">
+    <button type="button" class="btn-reset" onclick="if(confirm('¿Seguro que querés borrar todas las respuestas?')) document.getElementById('brand-form').reset()">Limpiar formulario</button>
+    <button type="button" class="btn-submit" id="btn-submit" onclick="submitForm()">Enviar respuestas ✉️</button>
   </div>
 
-  <div class="submit-area">
-    <button class="btn-submit" onclick="submitForm()">Enviar respuestas →</button><br>
-    <button class="btn-reset" onclick="resetForm()">Limpiar formulario</button>
-  </div>
+  </form>
+</main>
+</div>
 
-</div><!-- /main-form -->
-
-<!-- Success page -->
+<!-- SUCCESS PAGE -->
 <div id="success-page">
-  <div style="font-size:3rem; margin-bottom:16px;">🎉</div>
+  <div class="success-icon">🎉</div>
   <h2>¡Gracias por compartir!</h2>
-  <p style="margin-top:12px;">Recibimos toda la información de <strong>Test Studio Final</strong>.</p>
-  <p style="margin-top:10px;">Próximos pasos: Estamos en contacto para la primera entrega del brief de marca con la posibilidad de hacer ajustes o recomendaciones.</p>
-  <div class="contact-info">
-    <p>📧 Email: micaecgarcia@gmail.com</p>
-    <p>💬 WhatsApp: +54 9 11 3030 1901</p>
+  <p>Recibimos toda la información de <strong>Test Studio Final</strong>.</p>
+  <p style="margin-top: 12px;">Próximos pasos: Estamos en contacto para la primera entrega del brief de marca con la posibilidad de hacer ajustes o recomendaciones.</p>
+  <div class="success-contact">
+    <p>📧 Email: <strong>micaecgarcia@gmail.com</strong></p>
+    <p style="margin-top: 6px;">💬 WhatsApp: <strong>+54 9 11 3030 1901</strong></p>
   </div>
-  <p style="margin-top:20px; font-size:0.85rem; color:#999;">Podés cerrar esta ventana cuando quieras 🚀</p>
+  <p style="margin-top: 24px; font-size: 0.9rem; color: var(--text-secondary);">Puedes cerrar esta ventana cuando quieras 🚀</p>
 </div>
 
 <script>
-// --- Progress bar ---
+// ---- PROGRESS BAR ----
 function updateProgress() {
   const textareas = document.querySelectorAll('textarea');
-  const filled = Array.from(textareas).filter(t => t.value.trim().length > 0).length;
+  const filled = [...textareas].filter(t => t.value.trim().length > 2).length;
   const pct = Math.round((filled / textareas.length) * 100);
   document.getElementById('progress-bar').style.width = pct + '%';
 }
 document.querySelectorAll('textarea').forEach(t => t.addEventListener('input', updateProgress));
 
-// --- Accordion ---
-function toggleAccordion(id) {
-  const el = document.getElementById(id);
-  el.classList.toggle('open');
+// ---- ACCORDION ----
+function toggleSection(id) {
+  const sec = document.getElementById(id);
+  const body = sec.querySelector('.accordion-body');
+  const isOpen = sec.classList.contains('open');
+  sec.classList.toggle('open', !isOpen);
+  body.classList.toggle('open', !isOpen);
 }
 
-// --- Web Speech API ---
-let recognition = null;
-let activeId = null;
-let activeBtn = null;
-let activeStop = null;
-
+// ---- AUDIO LANGUAGE FALLBACKS ----
 const langFallbacks = {
-  'es-AR': ['es-ES','es-MX','es'],
-  'es-ES': ['es-MX','es'],
-  'es-MX': ['es'],
-  'en-US': ['en-GB','en'],
-  'en-GB': ['en'],
-  'pt-BR': ['pt-PT','pt'],
-  'pt-PT': ['pt'],
-  'fr-FR': ['fr']
+  'es-AR': ['es-AR','es-ES','es-MX','es'],
+  'es-ES': ['es-ES','es-MX','es'],
+  'es-MX': ['es-MX','es'],
+  'en-US': ['en-US','en-GB','en'],
+  'en-GB': ['en-GB','en-US','en'],
+  'pt-BR': ['pt-BR','pt-PT','pt'],
+  'pt-PT': ['pt-PT','pt-BR','pt'],
+  'fr-FR': ['fr-FR','fr'],
 };
 
-function getLang() {
+let activeRecognition = null;
+let activeBtn = null;
+
+function getSelectedLang() {
   return document.getElementById('lang-select').value;
 }
 
-function startRec(id, btn) {
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SpeechRecognition) {
-    document.getElementById('status-' + id).textContent = '⚠ Audio no soportado en este navegador';
+function startRec(btn, fieldName) {
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    alert('Tu navegador no soporta grabación de voz. Usa Chrome o Edge.');
     return;
   }
-  if (recognition) { recognition.stop(); }
-  const row = btn.parentElement;
-  const stopBtn = row.querySelector('.btn-stop');
-  activeId = id; activeBtn = btn; activeStop = stopBtn;
-  btn.style.display = 'none';
-  stopBtn.style.display = 'inline-block';
-  document.getElementById('status-' + id).textContent = '🔴 Grabando...';
+  if (activeRecognition) { activeRecognition.stop(); }
 
-  const lang = getLang();
-  function tryLang(langList, idx) {
-    if (idx >= langList.length) {
-      document.getElementById('status-' + id).textContent = '⚠ Error de idioma';
-      btn.style.display = 'inline-block'; stopBtn.style.display = 'none';
-      return;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const rec = new SpeechRecognition();
+  const lang = getSelectedLang();
+  const fallbacks = langFallbacks[lang] || [lang];
+
+  rec.continuous = true;
+  rec.interimResults = true;
+  rec.lang = fallbacks[0];
+
+  const container = btn.closest('.audio-controls');
+  const stopBtn = container.querySelector('.btn-stop');
+  const status = container.querySelector('.rec-label');
+  const dot = container.querySelector('.dot-rec');
+  const textarea = btn.closest('.question-block').querySelector('textarea');
+
+  let finalText = textarea.value;
+  let fallbackIdx = 0;
+
+  rec.onstart = () => {
+    btn.style.display = 'none';
+    stopBtn.style.display = 'inline-flex';
+    dot.style.display = 'inline-block';
+    status.textContent = 'Grabando...';
+    activeRecognition = rec;
+    activeBtn = btn;
+  };
+
+  rec.onresult = (e) => {
+    let interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      if (e.results[i].isFinal) finalText += e.results[i][0].transcript + ' ';
+      else interim = e.results[i][0].transcript;
     }
-    recognition = new SpeechRecognition();
-    recognition.lang = langList[idx];
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    let final = document.getElementById(id).value;
-    recognition.onresult = function(e) {
-      let interim = '';
-      for (let i = e.resultIndex; i < e.results.length; i++) {
-        if (e.results[i].isFinal) final += e.results[i][0].transcript + ' ';
-        else interim += e.results[i][0].transcript;
-      }
-      document.getElementById(id).value = final + interim;
-      updateProgress();
-    };
-    recognition.onerror = function(e) {
-      if (e.error === 'language-not-supported') {
-        const fallback = langFallbacks[lang] || [];
-        tryLang([lang, ...fallback], idx + 1);
-      } else {
-        document.getElementById('status-' + id).textContent = '⚠ ' + e.error;
-        btn.style.display = 'inline-block'; stopBtn.style.display = 'none';
-      }
-    };
-    recognition.onend = function() {
-      btn.style.display = 'inline-block'; stopBtn.style.display = 'none';
-      document.getElementById('status-' + id).textContent = '✓ Grabación guardada';
-    };
-    recognition.start();
-  }
-  tryLang([lang, ...(langFallbacks[lang] || [])], 0);
+    textarea.value = finalText + interim;
+    updateProgress();
+  };
+
+  rec.onerror = (e) => {
+    if ((e.error === 'language-not-supported' || e.error === 'network') && fallbackIdx < fallbacks.length - 1) {
+      fallbackIdx++;
+      rec.lang = fallbacks[fallbackIdx];
+      rec.start();
+    } else {
+      status.textContent = 'Error: ' + e.error;
+      dot.style.display = 'none';
+      btn.style.display = 'inline-flex';
+      stopBtn.style.display = 'none';
+    }
+  };
+
+  rec.onend = () => {
+    if (activeRecognition === rec) {
+      btn.style.display = 'inline-flex';
+      stopBtn.style.display = 'none';
+      dot.style.display = 'none';
+      status.textContent = finalText ? '✓ Grabado' : '';
+      activeRecognition = null;
+    }
+  };
+
+  stopBtn.onclick = () => { rec.stop(); };
+  rec.start();
 }
 
-function stopRec(id, btn) {
-  if (recognition) recognition.stop();
-  const row = btn.parentElement;
-  const recBtn = row.querySelector('.btn-record');
-  btn.style.display = 'none';
-  recBtn.style.display = 'inline-block';
-  document.getElementById('status-' + id).textContent = '✓ Grabación guardada';
+function stopRec(btn) {
+  if (activeRecognition) { activeRecognition.stop(); }
 }
 
-// --- Submit ---
-function submitForm() {
+// ---- FORM SUBMIT ----
+async function submitForm() {
   const name = document.getElementById('resp-name').value.trim();
   const email = document.getElementById('resp-email').value.trim();
-  if (!name || !email) { alert('Por favor completá tu nombre y email antes de enviar.'); return; }
+
+  if (!name) { document.getElementById('resp-name').classList.add('field-error'); document.getElementById('resp-name').focus(); return; }
+  if (!email || !email.includes('@')) { document.getElementById('resp-email').classList.add('field-error'); document.getElementById('resp-email').focus(); return; }
+
+  const submitBtn = document.getElementById('btn-submit');
+  submitBtn.innerHTML = '<span class="spinner"></span> Enviando...';
+  submitBtn.disabled = true;
 
   const answers = {};
-  for (let i = 1; i <= 44; i++) {
-    const el = document.getElementById('q' + i);
-    if (el) answers['q' + i] = el.value.trim();
-  }
+  document.querySelectorAll('textarea[name]').forEach(t => {
+    answers[t.name] = t.value.trim();
+  });
 
   const payload = {
     sheet_name: 'Respuestas Formularios Identidad',
-    client: 'Test Studio Final',
+    client_name: 'Test Studio Final',
+    sector: 'Servicios — Diseño, Branding & Dirección de Arte',
     respondent_name: name,
     respondent_email: email,
     respondent_role: document.getElementById('resp-role').value,
@@ -812,26 +801,22 @@ function submitForm() {
     ...answers
   };
 
-  fetch('https://script.google.com/macros/s/AKfycby37Y2mvnx7rf9J4v3VZIIGuLUnAUoa4dhw6kMMtKfEjKhaTZe3pgbSYKHHnyp2BzHS/exec', {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload)
-  }).catch(() => {});
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbxtSJmO_YrfHQ5K8Hylto6MF4paMP1mgAijc2CmH5jeUvOWt1eGfpqHl4ok9zOU7buF/exec', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Submit warning:', e); }
 
-  document.getElementById('main-form').style.display = 'none';
+  document.getElementById('form-wrapper').style.display = 'none';
   document.getElementById('success-page').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function resetForm() {
-  if (!confirm('¿Seguro que querés limpiar todas las respuestas?')) return;
-  document.querySelectorAll('textarea').forEach(t => t.value = '');
-  document.getElementById('resp-name').value = '';
-  document.getElementById('resp-email').value = '';
-  document.getElementById('resp-role').value = '';
-  updateProgress();
-}
+document.getElementById('resp-name').addEventListener('input', () => document.getElementById('resp-name').classList.remove('field-error'));
+document.getElementById('resp-email').addEventListener('input', () => document.getElementById('resp-email').classList.remove('field-error'));
 </script>
 </body>
 </html>
