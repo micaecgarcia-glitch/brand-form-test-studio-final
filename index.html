@@ -785,24 +785,25 @@ async function submitForm() {
   submitBtn.innerHTML = '<span class="spinner"></span> Enviando...';
   submitBtn.disabled = true;
 
-  const answers = {};
-  document.querySelectorAll('textarea[name]').forEach(t => {
-    answers[t.name] = t.value.trim();
+  // Build responses object in the format the script expects: { question_0, question_1, ... }
+  const responses = {};
+  document.querySelectorAll('textarea[name]').forEach((t, i) => {
+    responses['question_' + i] = t.value.trim();
   });
 
   const payload = {
-    sheet_name: 'Respuestas Formularios Identidad',
-    client_name: 'Test Studio Final',
+    brand_name: 'Test Studio Final',
     sector: 'Servicios — Diseño, Branding & Dirección de Arte',
     respondent_name: name,
     respondent_email: email,
     respondent_role: document.getElementById('resp-role').value,
+    language_used: document.getElementById('lang-select').value,
     timestamp: new Date().toISOString(),
-    ...answers
+    responses: responses
   };
 
   try {
-    await fetch('https://script.google.com/macros/s/AKfycbxtSJmO_YrfHQ5K8Hylto6MF4paMP1mgAijc2CmH5jeUvOWt1eGfpqHl4ok9zOU7buF/exec', {
+    await fetch('https://script.google.com/macros/s/AKfycbz-yzdbzGvu1HCmK-o9OJWNxAMRBOLH-Yge3qElLqUatP4nlWNy0snc4yp9qBcqsx-9/exec', {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
